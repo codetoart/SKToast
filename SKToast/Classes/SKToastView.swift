@@ -20,7 +20,7 @@ public class SKToast: NSObject {
     
     
     /// HUD Customization Properties
-    fileprivate var messageFont              : UIFont            = UIFont.systemFont(ofSize  : 16, weight  : .regular)
+    fileprivate var messageFont              : UIFont            = UIFont.systemFont(ofSize: 16)
     fileprivate var messageTextColor         : UIColor           = UIColor.white
     fileprivate var toastViewBackgroundStyle : UIBlurEffectStyle = .dark
     
@@ -130,11 +130,10 @@ public class SKToast: NSObject {
         let toastViewWidth  : CGFloat = (screen.size.width)-30
         
         if let statusMessage =  statusLabel?.text, statusMessage.count != 0 {
-            
-            let attributes = [NSAttributedStringKey.font: statusLabel?.font]
+            let attributes = [NSFontAttributeName: statusLabel?.font]
             let options: NSStringDrawingOptions = [.usesFontLeading, .usesLineFragmentOrigin]
             rectLabel = (statusLabel?.text?.boundingRect(with: CGSize(width: toastViewWidth-10, height: 300),
-                                                         options: options, attributes: attributes as [NSAttributedStringKey : AnyObject],
+                                                         options: options, attributes: attributes,
                                                          context: nil))!
             
             toastViewHeight = rectLabel.size.height + 18
